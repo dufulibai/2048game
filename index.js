@@ -17,31 +17,53 @@ for( var i = 0;i < 4;i++)
 {
     grid[i]=[0,0,0,0];
 }
-for(var i = 0;i<4 ;i++) {
-    for (var j = 0; j < 4; j++) {
-        var graphics = new PIXI.Graphics();
-        graphics.beginFill(0xff700B, 1);
-        graphics.drawRect(app.renderer.width / 8 + j * 155, app.renderer.height / 8 * 3 + i * 155, 150, 150);
-        app.stage.addChild(graphics);
-    }
-}
+
 function redomnumber()
 {
     return Math.floor(Math.random() * 4);
 }
-var x = redomnumber();
-var y = redomnumber();
+var rowIndex = redomnumber();
+var columnIndex = redomnumber();
 
-var graphics = new PIXI.Graphics();
-graphics.beginFill(999933, 1);
-graphics.drawRect(app.renderer.width / 8 + x * 155, app.renderer.height / 8 * 3 + y * 155, 150, 150);
-app.stage.addChild(graphics);
 
-var basicnumber = new PIXI.Text('2',{
-    fontSize:100
-});
-basicnumber.anchor.set(0.5);
-basicnumber.x =100/1.4 + app.renderer.width/8 + x * 155;
-basicnumber.y =100/1.4 + app.renderer.height/8 * 3 + y * 155;
+grid[rowIndex][columnIndex] = 2;
 
-app.stage.addChild(basicnumber);
+for(var i = 0;i<4 ;i++) {
+    for (var j = 0; j < 4; j++) {
+        drawCell(i, j);
+    }
+}
+
+function drawCell(rowIndex,columnIndex)
+{
+    var color = 0x0000FF;
+    if(grid[rowIndex][columnIndex] === 2) {
+        color = 0xFF0000;
+    }
+
+    var graphics = new PIXI.Graphics();
+    graphics.beginFill(color, 1);
+    graphics.drawRect(app.renderer.width / 8 + rowIndex * 155, app.renderer.height / 8 * 3 + columnIndex * 155, 150, 150);
+    app.stage.addChild(graphics);
+
+    if(grid[rowIndex][columnIndex] !== 0)
+    {
+        var basicnumber = new PIXI.Text(grid[rowIndex][columnIndex],{
+            fontSize:100
+        });
+        basicnumber.anchor.set(0.5);
+        basicnumber.x =100/1.4 + app.renderer.width/8 + rowIndex * 155;
+        basicnumber.y =100/1.4 + app.renderer.height/8 * 3 + columnIndex * 155;
+        app.stage.addChild(basicnumber);
+    }
+}
+
+document.addEventListener('keydown',function(event)
+{
+    if(event.key === "ArrowRight")
+    {
+        console.log(event);
+    }
+}
+);
+
