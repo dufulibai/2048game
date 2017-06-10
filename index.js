@@ -17,13 +17,31 @@ for( var i = 0;i < 4;i++)
 {
     grid[i]=[0,0,0,0];
 }
-for(var i = 0;i<4 ;i++)
-{
-    for(var j = 0;j<4; j++)
-    {
+for(var i = 0;i<4 ;i++) {
+    for (var j = 0; j < 4; j++) {
         var graphics = new PIXI.Graphics();
-        graphics.beginFill(0xff700B,1);
-        graphics.drawRect(app.renderer.width / 8+j * 155,app.renderer.height / 8 * 3+i * 155,150,150);
+        graphics.beginFill(0xff700B, 1);
+        graphics.drawRect(app.renderer.width / 8 + j * 155, app.renderer.height / 8 * 3 + i * 155, 150, 150);
         app.stage.addChild(graphics);
     }
 }
+function redomnumber()
+{
+    return Math.floor(Math.random() * 4);
+}
+var x = redomnumber();
+var y = redomnumber();
+
+var graphics = new PIXI.Graphics();
+graphics.beginFill(999933, 1);
+graphics.drawRect(app.renderer.width / 8 + x * 155, app.renderer.height / 8 * 3 + y * 155, 150, 150);
+app.stage.addChild(graphics);
+
+var basicnumber = new PIXI.Text('2',{
+    fontSize:100
+});
+basicnumber.anchor.set(0.5);
+basicnumber.x =100/1.4 + app.renderer.width/8 + x * 155;
+basicnumber.y =100/1.4 + app.renderer.height/8 * 3 + y * 155;
+
+app.stage.addChild(basicnumber);
