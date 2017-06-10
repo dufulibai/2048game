@@ -13,8 +13,14 @@
 </head>
 <body>
     <script>
-        var app = new PIXI.Application(800,900);
+        var app = new PIXI.Application(800,900,{backgroundColor: 0x1099bb});
         document.body.appendChild(app.view);
+
+        var basicText = new PIXI.Text('2048');
+        basicText.x = 30;
+        basicText.y = 90;
+
+        app.stage.addChild(basicText);
     </script>
     </body>
 </html>
